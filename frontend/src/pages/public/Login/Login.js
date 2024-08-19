@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { doLogin } from "../../../services/AuthService";
 
 function Login() {
   const history = useHistory();
@@ -8,12 +9,18 @@ function Login() {
   const [error, setError] = useState("");
 
   function onChangeInput(event) {
+    
     if (event.target.id === "email") setEmail(event.target.value);
     else setPassword(event.target.value);
   }
 
   function onSubmit(event) {
     event.preventDefault();
+
+    const isValid = doLogin(email, password);
+    if (isValid) {
+      history.push("/settings");
+    }
   }
 
   return (
