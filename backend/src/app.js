@@ -1,6 +1,7 @@
 const express = require("express");
-const cors = require('cors');
-const helmet = require('helmet');
+require("express-async-errors");
+const cors = require("cors");
+const helmet = require("helmet");
 
 // Carregamento do Aplicativo
 const app = express();
@@ -16,6 +17,7 @@ app.use("/", (req, res, next) => {
   res.send("hello wordl");
 });
 
-
+// Middleware de erros
+app.use(require("./middlewares/errorMiddleware"));
 
 module.exports = app;
