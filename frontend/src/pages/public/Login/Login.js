@@ -17,12 +17,15 @@ function Login() {
     event.preventDefault();
 
     doLogin(email, password)
-      .then((isValid) => {
-        if (isValid) history.push("/settings");
+      .then((response) => {
+        if (response) {
+          localStorage.setItem("token", response.token);
+          history.push("/settings");
+        }
       })
       .catch((err) => {
         console.error(err);
-        setError('Invalid user and/or password');
+        setError("Invalid user and/or password");
       });
   }
 
