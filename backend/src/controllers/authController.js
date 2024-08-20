@@ -1,10 +1,17 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 function doLogin(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
 
-  if (email === "brunoemf@gmail.com" && password === "123456") {
+  if (
+    email === "brunoemf@gmail.com" &&
+    bcrypt.compareSync(
+      password,
+      "$2a$12$E.hQHqKWnXZrFstAiopq2ep2K3E770yXcoOwBiW/hRvzV1nlHkn3W"
+    )
+  ) {
     const token = jwt.sign({ id: 1 }, process.env.JWT_SECRET, {
       expiresIn: parseInt(process.env.JWT_EXPIRES),
     });
