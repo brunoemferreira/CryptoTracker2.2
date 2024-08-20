@@ -1,7 +1,12 @@
 export function doLogin(email, password) {
-  if (email === "brunoemf@gmail.com" && password === "123456") {
-    return true;
-  } else return false;
+  return new Promise((response, reject) => {
+    if (email === "brunoemf@gmail.com" && password === "123456") {
+      response(true);
+    }
+    reject(
+      `Invalid user and/or password!`
+    );
+  });
 }
 
 export function doLogout() {}

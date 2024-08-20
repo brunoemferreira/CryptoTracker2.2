@@ -9,7 +9,6 @@ function Login() {
   const [error, setError] = useState("");
 
   function onChangeInput(event) {
-    
     if (event.target.id === "email") setEmail(event.target.value);
     else setPassword(event.target.value);
   }
@@ -17,10 +16,13 @@ function Login() {
   function onSubmit(event) {
     event.preventDefault();
 
-    const isValid = doLogin(email, password);
-    if (isValid) {
-      history.push("/settings");
-    }
+    doLogin(email, password)
+      .then((isValid) => {
+        if (isValid) history.push("/settings");
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }
 
   return (
