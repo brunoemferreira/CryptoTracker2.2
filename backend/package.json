@@ -4,7 +4,8 @@
   "description": "BackEnd do Crypto Tracker 2.2",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./src/server.js"
+    "start": "node -r dotenv/config ./src/server.js",
+    "dev": "node --watch -r dotenv/config ./src/server.js"
   },
   "keywords": [],
   "author": "",
