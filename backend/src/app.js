@@ -3,6 +3,8 @@ require("express-async-errors");
 const cors = require("cors");
 const helmet = require("helmet");
 
+const authController = require("./controllers/authController");
+
 // Carregamento do Aplicativo
 const app = express();
 
@@ -13,19 +15,9 @@ app.use(helmet());
 app.use(express.json());
 
 // **** Configurações do Backend ( feita a partir de middlewares ) ****
+app.post("/login", authController.doLogin);
 
-app.post("/login", (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  if (email === "brunoemf@gmail.com" && password === "123456") {
-    res.sendStatus(200);
-  } else res.sendStatus(401);
-});
-
-app.post("/logout", (req, res, next) => {
-  res.sendStatus(200);
-});
+app.post("/logout", authController.doLogout);
 
 // Middleware de erros
 app.use(require("./middlewares/errorMiddleware"));
