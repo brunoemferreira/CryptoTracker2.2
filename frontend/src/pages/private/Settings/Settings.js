@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { getSettings } from "../../../services/SettingsService";
 
 function Settings() {
+  const history = useHistory();
+  const [error, setError] = useState("");
+  const [settings, setSettings] = useState({
+    email: "",
+    apiUrl: "",
+    accessKey: "",
+    keySecret: "",
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    getSettings(token)
+      .then((response) => {
+        setSettings(response);
+      })
+      .catch((err) => {
+        if (err.response && err.response.status === 401) {
+          return history.push("/");
+        }
+        if (err.response) setError(err.response.data);
+        else setError(err.message);
+      });
+  }, []);
+
   return (
     <main>
       <section className="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
@@ -23,8 +49,9 @@ function Settings() {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              Settings
+              {settings.email}
             </Link>
+            {error ? <div className="alert alert-danger">{error}</div> : <></>}
           </p>
           <div className="col-12 d-flex align-items-center justify-content-center">
             <div className="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
