@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { getSettings } from "../../../services/SettingsService";
+import { doLogout } from "../../../services/AuthService";
 
 function Settings() {
   const history = useHistory();
@@ -27,6 +28,19 @@ function Settings() {
         else setError(err.message);
       });
   }, []);
+
+  function onLogoutClick(event) {
+    const token = localStorage.getItem("token");
+
+    doLogout(token)
+      .then((response) => {
+        localStorage.removeItem("token");
+        history.push("/");
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  }
 
   return (
     <main>
