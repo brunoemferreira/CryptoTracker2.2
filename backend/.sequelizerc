@@ -1,0 +1,6 @@
+// Este arquivo serve para dizer onde ficam as configurações de linha de comando do sequelize
+const path = require("path");
+
+module.exports = {
+  config: path.resolve("config", "config.js"),
+};
