@@ -1,8 +1,8 @@
 import React from "react";
-import {NavBar} from "./NavBar";
-import {SideBar} from "./SideBar";
+import NavBar from "./NavBar";
+import SideBar from "./SideBar";
 
-export default function Menu() {
+function Menu() {
   return (
     <>
       <NavBar />
@@ -10,3 +10,5 @@ export default function Menu() {
     </>
   );
 }
+
+export default Menu;
