@@ -26,4 +26,6 @@ DEFAULT_SETTINGS_EMAIL=       // Config. Binance : Email de Acesso
 DEFAULT_SETTINGS_PWD=         // Config. Binance : Senha de Acesso
 DEFAULT_SETTINGS_ACCESS_KEY=  // Config. Binance : AccessKey
 DEFAULT_SETTINGS_SECRET_KEY=  // Config. Binance : SecretKey
+
+
 ```
