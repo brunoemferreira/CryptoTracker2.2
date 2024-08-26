@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
  * - to: /settings
  * - text: Settings
  */
-export function SideBarItem(props) {
+export default function SideBarItem(props) {
   function getClassName(itemName) {
     return window.location.pathname === itemName
       ? "nav-item active"
